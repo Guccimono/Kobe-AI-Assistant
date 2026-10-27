@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.kobe-assistant.app</string>
+	<key>CFBundleName</key>
+	<string>Kobe</string>
+	<key>CFBundleDisplayName</key>
+	<string>Kobe</string>
+	<key>CFBundleExecutable</key>
+	<string>Kobe</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.3.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>© The Kobe authors</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>26.0</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Kobe shows your calendar in the notch.</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>Kobe shows your reminders and ticks them off when you click.</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Kobe reads your inbox and recent notes to show them in the notch.</string>
+	<key>NSFocusStatusUsageDescription</key>
+	<string>Kobe stays quiet about new WhatsApp messages while a Focus is on.</string>
+</dict>
+</plist>

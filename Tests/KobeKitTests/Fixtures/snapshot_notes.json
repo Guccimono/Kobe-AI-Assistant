@@ -1,0 +1,4 @@
+{"id":"notes","version":1,"updated_at":"2026-10-24T14:28:00Z","status":"ok","headline":"2 notes","detail":"","error":null,"source":"app",
+ "data":{"app_running":false,
+ "notes":[{"id":"x-coredata://ABC/ICNote/p12","title":"Menu ideas","snippet":"Tacos al pastor\nAgua de jamaica\nFlan","folder":"Notes","modified":"2026-10-24T12:00:00Z"},
+ {"id":"x-coredata://ABC/ICNote/p9","title":"Trip","snippet":"Book the flight","folder":"Personal","modified":"2026-10-20T18:30:00Z"}]}}

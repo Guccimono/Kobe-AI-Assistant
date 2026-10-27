@@ -1,0 +1,5 @@
+{"id":"reminders","version":1,"updated_at":"2026-10-24T14:28:00Z","status":"needs_you","headline":"1 overdue","detail":"","error":null,"source":"app",
+ "data":{"overdue":1,
+ "reminders":[{"id":"rem-1","title":"Send the invoice","list":"Work","list_color":"#F5A524","due":"2026-10-23T09:00:00Z","due_has_time":true,"completed":false,"notes":"For October."},
+ {"id":"rem-2","title":"Buy coffee","list":"Home","list_color":"#1E90FF","due":"2026-10-24T00:00:00Z","due_has_time":false,"completed":false,"notes":null},
+ {"id":"rem-3","title":"Menu ideas","list":"Home","list_color":"#1E90FF","due":null,"due_has_time":false,"completed":false,"notes":null}]}}

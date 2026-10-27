@@ -1,0 +1,9 @@
+event: run.started
+data: {"session_id": "api_1", "run_id": "run_2", "seq": 1, "ts": 1.0}
+
+event: error
+data: {"message": "boom", "session_id": "api_1", "run_id": "run_2", "seq": 3, "ts": 1.2}
+
+event: done
+data: {"session_id": "api_1", "run_id": "run_2", "seq": 4, "ts": 1.3}
+

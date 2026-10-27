@@ -1,0 +1,5 @@
+{"id":"mail","version":1,"updated_at":"2026-10-24T14:28:00Z","status":"ok","headline":"2 unread","detail":"","error":null,"source":"app",
+ "data":{"unread":2,"app_running":true,
+ "messages":[{"id":"CAF=abc@mail.gmail.com","sender":"Example Client","subject":"Menu for Saturday","preview":"Hi, could we add two dishes before the weekend?","at":"2026-10-24T13:50:00Z","unread":true,"account":"Google"},
+ {"id":"receipt-42@stripe.com","sender":"Stripe","subject":"Your receipt","preview":"Thanks for your payment.","at":"2026-10-24T09:12:00Z","unread":true,"account":"iCloud"},
+ {"id":"weekly@example.com","sender":"Example Newsletter","subject":"This week","preview":"Five things.","at":"2026-10-22T08:00:00Z","unread":false,"account":"Google"}]}}

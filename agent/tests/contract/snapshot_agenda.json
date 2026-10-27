@@ -1,0 +1,5 @@
+{"id":"agenda","version":1,"updated_at":"2026-10-24T14:28:00Z","status":"ok","headline":"Next: Call with Example Client at 15:00","detail":"","error":null,"source":"app",
+ "data":{"from":"2026-10-23T00:00:00Z","to":"2026-11-24T00:00:00Z",
+ "calendars":[{"id":"cal-work","name":"Work","color":"#F4505E"},{"id":"cal-home","name":"Home","color":"#1E90FF"}],
+ "events":[{"id":"ev-1","title":"Call with Example Client","calendar":"cal-work","start":"2026-10-24T15:00:00Z","end":"2026-10-24T15:30:00Z","all_day":false,"location":"Zoom","url":"https://example.com/meet/1","notes":"Bring the menu draft."},
+ {"id":"ev-2","title":"Day off","calendar":"cal-home","start":"2026-10-25T00:00:00Z","end":"2026-10-26T00:00:00Z","all_day":true,"location":null,"url":null,"notes":null}]}}

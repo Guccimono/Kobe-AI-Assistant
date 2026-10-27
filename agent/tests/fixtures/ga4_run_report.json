@@ -1,0 +1,4 @@
+{"dimensionHeaders":[{"name":"dateRange"}],"metricHeaders":[{"name":"activeUsers","type":"TYPE_INTEGER"}],
+ "rows":[{"dimensionValues":[{"value":"previous"}],"metricValues":[{"value":"1100"}]},
+         {"dimensionValues":[{"value":"current"}],"metricValues":[{"value":"1240"}]}],
+ "rowCount":2,"kind":"analyticsData#runReport"}

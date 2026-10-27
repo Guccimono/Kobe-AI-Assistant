@@ -1,0 +1,5 @@
+{"object":"list","data":[
+ {"id":"ch_1","amount":4900,"currency":"eur","created":1792600000,"status":"succeeded","description":null,"billing_details":{"name":"Sarah L."}},
+ {"id":"ch_2","amount":4900,"currency":"eur","created":1792590000,"status":"succeeded","description":"Pro plan","billing_details":{"name":"Camille R."}},
+ {"id":"ch_3","amount":1900,"currency":"eur","created":1792580000,"status":"failed","description":null,"billing_details":{"name":null}}
+]}

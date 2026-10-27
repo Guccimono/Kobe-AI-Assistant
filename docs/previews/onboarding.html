@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kobe onboarding</title>
+<style>
+  :root {
+    --bg: #0b0c0a; --win: #141612; --glass: rgba(255,255,255,0.06); --glass2: rgba(255,255,255,0.1);
+    --line: rgba(255,255,255,0.09); --text1: #f2f3ee; --text2: rgba(242,243,238,0.72); --text3: rgba(242,243,238,0.45);
+    --lime: #C7F41E; --ink: #162814; --amber: #f3b23e; --red: #ef5b5b; --green: #4cd37a;
+    --r: 14px; --r-sm: 10px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; overflow-x: hidden; background: var(--bg); color: var(--text1); font: 14px/1.45 -apple-system, "SF Pro Text", Inter, system-ui, sans-serif; min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; }
+  .window { width: min(760px, 100%); min-height: 560px; background: var(--win); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 30px 80px rgba(0,0,0,.6); display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; }
+  header { display: flex; align-items: center; gap: 12px; padding: 16px 22px 10px; }
+  header svg { width: 28px; height: 28px; border-radius: 7px; flex: none; }
+  header .title { font-weight: 600; }
+  header .steps { margin-left: auto; display: flex; gap: 6px; }
+  header .steps i { width: 22px; height: 4px; border-radius: 2px; background: var(--glass2); display: block; }
+  header .steps i.on { background: var(--lime); }
+  main { padding: 10px 22px; overflow: auto; }
+  h1 { font-size: 22px; font-weight: 700; margin: 6px 0 4px; letter-spacing: -0.01em; }
+  .lead { color: var(--text2); margin: 0 0 16px; max-width: 560px; }
+  .eyebrow { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); margin: 14px 0 6px; }
+  .card { background: var(--glass); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  label.f { display: block; font-size: 12px; color: var(--text3); margin-bottom: 4px; }
+  input[type=text], input[type=password], textarea { width: 100%; background: var(--glass); border: 1px solid var(--line); color: var(--text1); border-radius: var(--r-sm); padding: 9px 11px; font: inherit; outline: none; }
+  input:focus, textarea:focus { border-color: rgba(199,244,30,.6); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 6px 12px; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); cursor: pointer; font-size: 13px; color: var(--text2); }
+  .chip.on { background: rgba(199,244,30,.14); border-color: rgba(199,244,30,.6); color: var(--text1); }
+  footer { display: flex; align-items: center; gap: 10px; padding: 12px 22px 16px; border-top: 1px solid var(--line); }
+  footer .hint { color: var(--text3); font-size: 12px; }
+  footer .sp { flex: 1; }
+  button { font: inherit; border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer; color: var(--text1); background: var(--glass2); }
+  button.primary { background: var(--lime); color: var(--ink); font-weight: 600; }
+  button.ghost { background: transparent; color: var(--text2); }
+  button.small { padding: 6px 12px; font-size: 13px; }
+  button:disabled { opacity: .4; cursor: default; }
+  .door { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; cursor: pointer; background: var(--glass); position: relative; }
+  .door.on { border-color: rgba(199,244,30,.7); background: rgba(199,244,30,.08); }
+  .door b { display: block; margin-bottom: 2px; }
+  .door small { color: var(--text2); display: block; }
+  .door .tag { position: absolute; top: 10px; right: 10px; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); background: var(--lime); padding: 2px 7px; border-radius: 999px; }
+  .door .cost { color: var(--text3); font-size: 12px; margin-top: 4px; display: block; }
+  .status { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--r); background: var(--glass); border: 1px solid var(--line); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--text3); flex: none; }
+  .dot.ok { background: var(--green); } .dot.warn { background: var(--amber); } .dot.bad { background: var(--red); }
+  .muted { color: var(--text3); font-size: 12px; }
+  .ok { color: var(--green); } .warn { color: var(--amber); } .bad { color: var(--red); }
+  ul.plain { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  ul.plain li { display: flex; gap: 10px; align-items: flex-start; }
+  ul.plain li .k { width: 18px; height: 18px; border-radius: 50%; background: var(--glass2); flex: none; display: grid; place-items: center; font-size: 11px; color: var(--text2); }
+  ul.plain li .k.ok { background: var(--green); color: var(--ink); }
+  .sim { margin-top: 12px; border-top: 1px dashed var(--line); padding-top: 10px; display: flex; gap: 8px; align-items: center; color: var(--text3); font-size: 12px; }
+  .sim .chip { font-size: 12px; padding: 4px 10px; }
+  a { color: var(--lime); text-decoration: none; }
+  code { background: var(--glass); padding: 2px 6px; border-radius: 6px; font-size: 12px; }
+  .kbd { display: inline-block; border: 1px solid var(--line); border-radius: 6px; padding: 1px 7px; font-size: 12px; color: var(--text2); }
+  .pane { display: none; }
+  .pane.on { display: block; }
+  .notch { margin: 12px auto 0; width: 420px; height: 110px; background: #000; border-radius: 0 0 22px 22px; border: 1px solid var(--line); border-top: 0; display: grid; place-items: center; color: var(--text3); font-size: 12px; }
+  .notch b { color: var(--lime); }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } .notch { width: 100%; } }
+</style>
+</head>
+<body>
+<div class="window">
+  <header>
+    <svg width="28" height="28" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1593_8)">
+<rect width="1024" height="1024" fill="#C7F41E"/>
+<path d="M500.887 709.198C500.887 744.049 492.571 769.086 443.387 769.086C394.38 769.086 385.889 744.049 385.889 709.198L385.889 344.974C385.889 310.123 394.382 285.086 443.389 285.086C492.573 285.086 500.889 310.123 500.889 344.974L500.887 709.198Z" fill="#162814"/>
+<path d="M793.889 542.223C793.889 577.06 785.573 602.086 736.389 602.086C687.382 602.086 678.889 577.06 678.889 542.223L678.889 509.948C678.889 475.112 687.381 450.086 736.389 450.086C785.573 450.086 793.889 475.112 793.889 509.948L793.889 542.223Z" fill="#162814"/>
+<path d="M646.889 621.259C646.889 656.075 638.645 681.086 589.889 681.086C541.308 681.086 532.889 656.075 532.889 621.259L532.889 430.912C532.889 396.097 541.308 371.086 589.889 371.086C638.645 371.086 646.889 396.097 646.889 430.912L646.889 621.259Z" fill="#162814"/>
+<path d="M352.889 554.086C352.889 589.002 344.645 614.086 295.889 614.086C247.308 614.086 238.889 589.002 238.889 554.086L238.889 499.086C238.889 464.17 247.307 439.086 295.889 439.086C344.645 439.086 352.889 464.17 352.889 499.086L352.889 554.086Z" fill="#162814"/>
+<path d="M798.069 285.035C798.091 287.85 797.235 290.602 795.621 292.909C794.007 295.215 791.715 296.961 789.063 297.904L734.65 317.698L714.871 372.119C713.896 374.746 712.141 377.012 709.841 378.612C707.541 380.212 704.807 381.069 702.005 381.069C699.204 381.069 696.47 380.212 694.17 378.612C691.87 377.012 690.115 374.746 689.14 372.119L669.361 317.689L614.948 297.904C612.322 296.929 610.056 295.173 608.457 292.873C606.857 290.572 606 287.837 606 285.035C606 282.232 606.857 279.497 608.457 277.197C610.056 274.896 612.322 273.14 614.948 272.165L669.361 252.38L689.14 197.951C690.115 195.323 691.87 193.058 694.17 191.458C696.47 189.858 699.204 189 702.005 189C704.807 189 707.541 189.858 709.841 191.458C712.141 193.058 713.896 195.323 714.871 197.951L734.658 252.38L789.063 272.165C791.715 273.108 794.007 274.854 795.621 277.161C797.235 279.467 798.091 282.219 798.069 285.035Z" fill="#162814"/>
+</g>
+<defs>
+<clipPath id="clip0_1593_8">
+<rect width="1024" height="1024" rx="12" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+    <span class="title">Welcome to Kobe</span>
+    <span class="steps" id="steps"></span>
+  </header>
+
+  <main>
+    <!-- 0 Welcome -->
+    <section class="pane" data-title="Welcome to Kobe">
+      <h1>An assistant that lives in your notch.</h1>
+      <p class="lead">Kobe shows your messages, calendar, money and code at the top of the screen, and you talk to it like a colleague. To do that it needs two things, and we set both up together in about five minutes.</p>
+      <div class="grid2">
+        <div class="card"><b>1. An engine</b><br><span class="muted">Hermes Agent runs on your Mac and does the work: reads, remembers, acts. Free and open source. If it isn't here yet, Kobe installs it with you.</span></div>
+        <div class="card"><b>2. A brain</b><br><span class="muted">An AI model the engine thinks with. You pick one; the best ones are paid by use, one runs on your Mac for free.</span></div>
+      </div>
+      <p class="muted" style="margin-top:14px">Nothing leaves your Mac except what you send to the brain you choose. No account with us, no telemetry.</p>
+    </section>
+
+    <!-- 1 Assistant -->
+    <section class="pane" data-title="Your assistant">
+      <h1>Name your assistant.</h1>
+      <p class="lead">This is who you'll be talking to. You can change all of it later in Settings.</p>
+      <div class="grid2">
+        <div><label class="f">Name</label><input type="text" id="aname" value="Kobe" oninput="renameAll()"></div>
+        <div><label class="f">Voice</label><div class="chips"><span class="chip on">Nova</span><span class="chip">Adam</span><span class="chip">Bella</span><span class="chip">Off</span></div></div>
+      </div>
+      <div style="margin-top:12px"><label class="f">What it's for (one line)</label><input type="text" placeholder="My ops partner for the café: bookings, suppliers, the website"></div>
+      <div class="eyebrow">Tone</div>
+      <div class="chips"><span class="chip on">Direct</span><span class="chip">Warm</span><span class="chip">Brief</span></div>
+      <p class="muted" style="margin-top:14px">Kobe writes this as <span class="an">Kobe</span>'s personality in the engine, so it speaks this way from the first message. Your own notes in the engine are never touched.</p>
+    </section>
+
+    <!-- 2 Engine -->
+    <section class="pane" data-title="The engine">
+      <h1>Looking for Hermes Agent…</h1>
+      <p class="lead">Hermes is the engine behind <span class="an">Kobe</span>. It runs on this Mac, under your account. Kobe checks for it, and installs it only when you click.</p>
+      <div id="eng-running" class="estate">
+        <div class="status"><i class="dot ok"></i><div><b>Hermes is running</b><br><span class="muted">Found at 127.0.0.1:8642 · version 0.9.3</span></div></div>
+      </div>
+      <div id="eng-installed" class="estate" style="display:none">
+        <div class="status"><i class="dot warn"></i><div><b>Hermes is installed, but not answering</b><br><span class="muted">Found <code>~/.hermes</code>. Its API server is off. Kobe can turn it on for you.</span></div><span class="sp" style="flex:1"></span><button class="small">Turn it on</button></div>
+      </div>
+      <div id="eng-missing" class="estate" style="display:none">
+        <div class="status"><i class="dot bad"></i><div><b>Hermes isn't installed yet</b><br><span class="muted">One command, run in Terminal where you can watch it. Takes a minute or two.</span></div><span class="sp" style="flex:1"></span><button class="small primary">Install Hermes</button></div>
+        <p class="muted" style="margin:10px 2px 0">Prefer to do it yourself? <a href="#">Hermes install guide</a>, then come back and press Check again.</p>
+      </div>
+      <div class="sim">Try the other outcomes:
+        <span class="chip on" onclick="estate('running',this)">Running</span>
+        <span class="chip" onclick="estate('installed',this)">Installed, API off</span>
+        <span class="chip" onclick="estate('missing',this)">Not installed</span>
+      </div>
+    </section>
+
+    <!-- 3 Brain -->
+    <section class="pane" data-title="The brain">
+      <h1>Pick a brain.</h1>
+      <p class="lead">An AI model is what <span class="an">Kobe</span> thinks with. You pay the model's maker directly, with a key they give you. Kobe keeps the key in your Mac's Keychain and hands it to the engine.</p>
+      <div class="grid2">
+        <div class="door on" onclick="door(this)"><span class="tag">Recommended</span><b>Claude</b><small>By Anthropic. Best at understanding what you mean.</small><span class="cost">About the price of a coffee for a day of chatting.</span></div>
+        <div class="door" onclick="door(this)"><b>OpenAI</b><small>GPT models. Solid all-rounder.</small><span class="cost">Pay per use, similar.</span></div>
+        <div class="door" onclick="door(this)"><b>OpenRouter</b><small>One key, many models, switch any time.</small><span class="cost">Pay per use.</span></div>
+        <div class="door" onclick="door(this)"><b>On this Mac (Ollama)</b><small>Free and private. Slower, less sharp, needs a 5 GB download and a recent Mac.</small><span class="cost">Free.</span></div>
+      </div>
+      <div class="eyebrow">Your key</div>
+      <div class="row">
+        <input type="password" id="key" placeholder="sk-ant-…  (paste it here)" style="flex:1">
+        <button class="small" onclick="checkKey()">Check</button>
+      </div>
+      <p class="muted" id="keymsg" style="margin:8px 2px 0">An API key is a long password that lets the engine use the model on your behalf. <a href="#">Create one at Anthropic</a> (free account, add a few dollars), copy it, paste it above.</p>
+    </section>
+
+    <!-- 4 Connect -->
+    <section class="pane" data-title="Connecting">
+      <h1>Connecting <span class="an">Kobe</span> to the engine.</h1>
+      <p class="lead">Kobe does this part alone. Nothing to copy.</p>
+      <div class="card">
+        <ul class="plain" id="conn">
+          <li><span class="k ok">✓</span><div>Gave the engine your Claude key</div></li>
+          <li><span class="k ok">✓</span><div>Installed the Kobe skill into Hermes <span class="muted">(so it can write your Now list, answer the notch, read your Mac)</span></div></li>
+          <li><span class="k ok">✓</span><div>Created a private key between Kobe and the engine <span class="muted">· kept in your Keychain, you'll never need it</span></div></li>
+          <li><span class="k ok">✓</span><div>Wrote <span class="an">Kobe</span>'s personality</div></li>
+          <li><span class="k">…</span><div>First hello from <span class="an">Kobe</span></div></li>
+        </ul>
+      </div>
+      <div class="status" style="margin-top:12px"><i class="dot ok"></i><div><b><span class="an">Kobe</span>:</b> Hi. I'm here in your notch now. Want to start with your calendar or your inbox?</div></div>
+    </section>
+
+    <!-- 5 Mac -->
+    <section class="pane" data-title="Your Mac">
+      <h1>What <span class="an">Kobe</span> can see on this Mac.</h1>
+      <p class="lead">Each one asks macOS for permission the first time you open its page, not now. You can say no to any of them.</p>
+      <div class="grid2">
+        <div class="card"><b>Mail</b><br><span class="muted">Unread count and the latest messages. Never sends.</span></div>
+        <div class="card"><b>Calendar</b><br><span class="muted">Today and the month. Opens events in Calendar.</span></div>
+        <div class="card"><b>Reminders</b><br><span class="muted">What's due; add one from the notch; tick when you click.</span></div>
+        <div class="card"><b>Notes</b><br><span class="muted">Recent notes; edit one in the notch.</span></div>
+      </div>
+      <p class="muted" style="margin-top:14px">The engine reads them through Kobe, on your Mac. Nothing is uploaded unless you ask <span class="an">Kobe</span> something about it.</p>
+    </section>
+
+    <!-- 6 Connections -->
+    <section class="pane" data-title="Connections">
+      <h1>Connect what you use.</h1>
+      <p class="lead">All optional, all later in Settings. Every key is read-only where the service allows it, and stays in your Keychain.</p>
+      <div class="grid2">
+        <div class="card row"><div style="flex:1"><b>Claude Code</b><br><span class="muted">See your coding sessions and approve from the notch.</span></div><button class="small">Set up</button></div>
+        <div class="card row"><div style="flex:1"><b>WhatsApp</b><br><span class="muted">Unread chats, reply from the notch.</span></div><button class="small">Set up</button></div>
+        <div class="card row"><div style="flex:1"><b>Stripe</b><br><span class="muted">Money in, read-only key.</span></div><button class="small">Set up</button></div>
+        <div class="card row"><div style="flex:1"><b>GitHub</b><br><span class="muted">PRs that need you, red mains.</span></div><button class="small">Set up</button></div>
+        <div class="card row"><div style="flex:1"><b>Vercel</b><br><span class="muted">Deploys, failures.</span></div><button class="small">Set up</button></div>
+        <div class="card row"><div style="flex:1"><b>Google</b><br><span class="muted">Analytics and Search Console.</span></div><button class="small">Set up</button></div>
+      </div>
+    </section>
+
+    <!-- 7 Done -->
+    <section class="pane" data-title="Ready">
+      <h1>That's it.</h1>
+      <p class="lead">Move the pointer to the notch to open <span class="an">Kobe</span>. From any app, <span class="kbd">⌃⌥Space</span> asks a quick question.</p>
+      <div class="notch"><div><b><span class="an">Kobe</span></b> · 3 need you · Ana paid €40 · Standup in 20 min</div></div>
+      <div class="grid2" style="margin-top:16px">
+        <div class="card"><b>Writing first</b><br><span class="muted">Home opens on the chat; typing folds the Now list to a rail. <span class="kbd">⌘\</span> brings it back.</span></div>
+        <div class="card"><b>Nothing happens without you</b><br><span class="muted">Approvals, WhatsApp replies and anything that costs money need a click or a hotkey from you.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="hint" id="hint"></span>
+    <span class="sp"></span>
+    <button class="ghost" id="back" onclick="go(-1)">Back</button>
+    <button class="primary" id="next" onclick="go(1)">Next ›</button>
+  </footer>
+</div>
+
+<script>
+  const panes = [...document.querySelectorAll('.pane')];
+  const hints = ['Takes about five minutes', 'You can change this any time', 'Kobe never installs anything without a click', 'Keys stay in your Keychain', '', 'Permissions are asked on first use', 'Skip this: Settings has it all', ''];
+  let i = 0;
+  function render() {
+    panes.forEach((p, n) => p.classList.toggle('on', n === i));
+    document.getElementById('steps').innerHTML = panes.map((_, n) => `<i class="${n <= i ? 'on' : ''}"></i>`).join('');
+    document.querySelector('header .title').textContent = panes[i].dataset.title;
+    document.getElementById('back').style.visibility = i ? 'visible' : 'hidden';
+    const next = document.getElementById('next');
+    next.textContent = i === panes.length - 1 ? 'Open the notch' : (i === 6 ? 'Skip for now ›' : 'Next ›');
+    document.getElementById('hint').textContent = hints[i] || '';
+  }
+  function go(d) { i = Math.max(0, Math.min(panes.length - 1, i + d)); render(); }
+  function renameAll() { const v = document.getElementById('aname').value.trim() || 'Kobe'; document.querySelectorAll('.an').forEach(e => e.textContent = v); }
+  function estate(s, el) { document.querySelectorAll('.estate').forEach(e => e.style.display = 'none'); document.getElementById('eng-' + s).style.display = ''; el.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('on')); el.classList.add('on');
+    document.querySelector('[data-title="The engine"] h1').textContent = { running: 'Hermes is here.', installed: 'Hermes is here, asleep.', missing: 'Hermes isn\'t installed yet.' }[s]; }
+  function door(el) { document.querySelectorAll('.door').forEach(d => d.classList.remove('on')); el.classList.add('on');
+    const name = el.querySelector('b').textContent; const key = document.getElementById('key'); const msg = document.getElementById('keymsg');
+    const copy = { 'Claude': ['sk-ant-…  (paste it here)', 'An API key is a long password that lets the engine use the model on your behalf. <a href="#">Create one at Anthropic</a> (free account, add a few dollars), copy it, paste it above.'],
+      'OpenAI': ['sk-…  (paste it here)', '<a href="#">Create a key at OpenAI</a>, add a few dollars of credit, paste it above.'],
+      'OpenRouter': ['sk-or-…  (paste it here)', '<a href="#">Create a key at OpenRouter</a>; one key gives you Claude, GPT and open models.'],
+      'On this Mac (Ollama)': ['No key needed', 'Kobe looks for Ollama on this Mac. Not here yet? <a href="#">Install Ollama</a>, then Kobe fetches the recommended model (5 GB).'] }[name];
+    key.placeholder = copy[0]; key.disabled = name.startsWith('On this'); msg.innerHTML = copy[1]; msg.className = 'muted'; }
+  function checkKey() { const v = document.getElementById('key').value, msg = document.getElementById('keymsg');
+    if (!v) { msg.textContent = 'Paste the key first.'; msg.className = 'muted warn'; return; }
+    if (v.startsWith('sk-ant')) { msg.textContent = '✓ Key works. 12 models available.'; msg.className = 'muted ok'; }
+    else if (v.startsWith('sk-')) { msg.textContent = 'This looks like an OpenAI key, not a Claude one. Pick OpenAI above, or create a Claude key.'; msg.className = 'muted warn'; }
+    else { msg.textContent = 'Anthropic doesn\'t recognise this key. Check you copied the whole thing.'; msg.className = 'muted bad'; } }
+  document.addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1); });
+  render();
+</script>
+</body>
+</html>

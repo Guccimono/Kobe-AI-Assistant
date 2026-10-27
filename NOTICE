@@ -1,0 +1,16 @@
+Kobe Assistant
+Copyright (c) 2026 Gauthier Cousergue, MIT License (see LICENSE).
+
+This project includes or derives from the following work.
+
+Coucou, by Louis Raillé (MIT License)
+  The notch look and motion (spring curves), the Stripe, Vercel and GitHub service clients, and the WhatsApp
+  strings derive from Coucou. Coucou's sounds and icons are not used.
+
+Phosphor Icons (MIT License), https://phosphoricons.com
+  Every icon in Sources/KobeKit/Resources/Icons is an unmodified Phosphor SVG.
+
+Separate projects, not bundled, installed by their own installers under their own licences:
+  Hermes Agent, by Nous Research: the engine Kobe talks to. https://hermes-agent.nousresearch.com
+  GOWA (go-whatsapp-web-multidevice): the WhatsApp gateway, fetched from its GitHub releases on request.
+  Kokoro (text to speech): the optional local voice, installed by scripts/setup-kokoro.sh.

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Template and documentation. The Kobe app writes the real file to ~/Library/LaunchAgents/ with absolute paths:
+  launchd does not expand "~", so replace it with your home folder before using this by hand.
+  A LaunchAgent runs as you; there is no UserName. Load it with:
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.kobe-assistant.agent.plist
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.kobe-assistant.agent</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/env</string>
+		<string>python3</string>
+		<string>-m</string>
+		<string>kobe_agent</string>
+		<string>run</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>~/.hermes/kobe</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>StandardOutPath</key>
+	<string>~/.hermes/kobe/logs/agent.log</string>
+	<key>StandardErrorPath</key>
+	<string>~/.hermes/kobe/logs/agent.log</string>
+</dict>
+</plist>

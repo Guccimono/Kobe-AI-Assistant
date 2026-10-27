@@ -1,0 +1,32 @@
+event: run.started
+data: {"user_message": {"role": "user", "content": "Hi"}, "runtime": {"model": "nemotron-3-ultra:free"}, "session_id": "api_1", "run_id": "run_1", "seq": 1, "ts": 1.0}
+
+event: message.started
+data: {"message": {"id": "msg_1", "role": "assistant"}, "session_id": "api_1", "run_id": "run_1", "seq": 2, "ts": 1.1}
+
+: keepalive
+
+event: assistant.delta
+data: {"message_id": "msg_1", "delta": "Hel", "session_id": "api_1", "run_id": "run_1", "seq": 3, "ts": 1.2}
+
+event: assistant.delta
+data: {"message_id": "msg_1", "delta": "lo", "session_id": "api_1", "run_id": "run_1", "seq": 4, "ts": 1.3}
+
+event: tool.started
+data: {"message_id": "msg_1", "tool_name": "terminal", "preview": "touch /tmp/x", "args": {}, "session_id": "api_1", "run_id": "run_1", "seq": 5, "ts": 1.4}
+
+event: approval.request
+data: {"command": "touch /tmp/x", "pattern_key": "touch", "description": "Create a file", "allow_permanent": true, "allow_session": true, "request_id": "r1", "event": "approval.request", "run_id": "run_1", "timestamp": 1.5, "message_id": "msg_1", "choices": ["once", "session", "always", "deny"], "session_id": "api_1", "seq": 6, "ts": 1.5}
+
+event: tool.completed
+data: {"message_id": "msg_1", "tool_name": "terminal", "preview": "ok", "args": {}, "session_id": "api_1", "run_id": "run_1", "seq": 7, "ts": 1.6}
+
+event: assistant.completed
+data: {"session_id": "api_1", "message_id": "msg_1", "content": "Hello", "completed": true, "partial": false, "interrupted": false, "runtime": {"model": "nemotron-3-ultra:free"}, "run_id": "run_1", "seq": 8, "ts": 1.7}
+
+event: run.completed
+data: {"session_id": "api_1", "message_id": "msg_1", "completed": true, "messages": [], "usage": {}, "runtime": {}, "run_id": "run_1", "seq": 9, "ts": 1.8}
+
+event: done
+data: {"session_id": "api_1", "run_id": "run_1", "seq": 10, "ts": 1.9}
+

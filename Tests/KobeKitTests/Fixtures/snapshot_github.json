@@ -1,0 +1,5 @@
+{"id":"github","version":1,"updated_at":"2026-10-23T14:28:10Z","status":"ok","headline":"All green","detail":"2 open PRs","error":null,
+ "data":{"needs_you":[{"id":"pr-12","repo":"acme/web","number":12,"title":"Fix menu sort","state":"failing","branch":"fix/sort","author":"luis","url":"https://github.com/acme/web/pull/12"}],
+ "my_prs":[{"id":"pr-13","repo":"acme/api","number":13,"title":"Snapshots","state":"running","branch":null,"author":null,"url":"https://github.com/acme/api/pull/13"}],
+ "mains":[{"id":"main-1","repo":"acme/web","number":null,"title":"main","state":"passing","branch":"main","author":null,"url":"https://github.com/acme/web"}],
+ "activity":[1,0,3,5,2,0,4],"total":15,"stars":7}}

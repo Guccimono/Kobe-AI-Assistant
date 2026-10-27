@@ -1,0 +1,2 @@
+{"id":"stripe","version":2,"updated_at":"2026-10-23T14:28:10Z","status":"ok","headline":"All good","detail":"","error":null,
+ "data":{"period":"today","total":0,"count":0,"failed":0,"refunds":0,"currency":"eur","available":0,"pending":0,"next_payout":null,"payments":[]}}

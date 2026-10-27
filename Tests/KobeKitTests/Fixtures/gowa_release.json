@@ -1,0 +1,6 @@
+{"tag_name":"v9.6.0","assets":[
+ {"name":"whatsapp_9.6.0_linux_amd64.zip","browser_download_url":"https://github.com/aldinokemal/go-whatsapp-web-multidevice/releases/download/v9.6.0/whatsapp_9.6.0_linux_amd64.zip","size":16000000},
+ {"name":"whatsapp_9.6.0_darwin_arm64.zip","browser_download_url":"https://github.com/aldinokemal/go-whatsapp-web-multidevice/releases/download/v9.6.0/whatsapp_9.6.0_darwin_arm64.zip","size":15400000,"digest":"sha256:BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"},
+ {"name":"whatsapp_9.6.0_darwin_amd64.zip","browser_download_url":"https://github.com/aldinokemal/go-whatsapp-web-multidevice/releases/download/v9.6.0/whatsapp_9.6.0_darwin_amd64.zip","size":16100000},
+ {"name":"checksums-macos.txt","browser_download_url":"https://github.com/aldinokemal/go-whatsapp-web-multidevice/releases/download/v9.6.0/checksums-macos.txt","size":200}
+]}

@@ -1,0 +1,2 @@
+{"status": "ready", "platform": "hermes-agent", "version": "0.22.3", "gateway_state": "running",
+ "platforms": {"api_server": {"state": "connected"}, "whatsapp": {"state": "disconnected"}}}

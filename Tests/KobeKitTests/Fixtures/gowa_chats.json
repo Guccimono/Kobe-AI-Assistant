@@ -1,0 +1,7 @@
+{"code":"SUCCESS","results":{"data":[
+ {"jid":"status@broadcast","name":"","last_message_time":"2026-10-21T17:00:00Z"},
+ {"jid":"120363000000000009@newsletter","name":"Some channel","last_message_time":"2026-10-21T16:50:00Z"},
+ {"jid":"15550100199@s.whatsapp.net","name":"Luis Ortega","last_message_time":"2026-10-21T16:43:00Z"},
+ {"jid":"120363000000000000@g.us","name":"Acme team","last_message_time":"2026-10-21T15:00:00Z"},
+ {"jid":"15550100110@s.whatsapp.net","name":"","last_message_time":"2026-10-20T10:00:00Z"}
+],"pagination":{"limit":100,"offset":0,"total":5}}}

@@ -1,0 +1,5 @@
+{"code":"SUCCESS","results":{"data":[
+ {"id":"M3","chat_jid":"120363000000000001@g.us","sender_jid":"15550002222@s.whatsapp.net","sender_display_name":"Bruno","content":"","timestamp":"2026-10-21T16:45:00Z","is_from_me":false,"media_type":"document","filename":"menu.pdf"},
+ {"id":"M2","chat_jid":"120363000000000001@g.us","sender_jid":"15550009999@s.whatsapp.net","sender_display_name":"","content":"ok","timestamp":"2026-10-21T16:44:00Z","is_from_me":true,"media_type":""},
+ {"id":"M1","chat_jid":"120363000000000001@g.us","sender_jid":"15550002222@s.whatsapp.net","sender_display_name":"Bruno","content":"hi @15550009999","timestamp":"2026-10-21T16:43:00Z","is_from_me":false,"media_type":""}
+],"chat_info":{"jid":"120363000000000001@g.us","name":"Acme team"}}}

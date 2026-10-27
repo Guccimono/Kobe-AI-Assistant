@@ -1,0 +1,4 @@
+{"id":"stripe","version":1,"updated_at":"2026-10-23T14:28:10Z","status":"needs_you","headline":"1 failed","detail":"€128 today · 3 payments","error":null,
+ "data":{"period":"today","total":12800,"count":3,"failed":1,"refunds":0,"currency":"eur","available":45000,"pending":12000,"next_payout":"2026-10-25T00:00:00Z",
+ "payments":[{"id":"ch_1","customer":"Café Roma","plan":"Pro","amount":4900,"currency":"eur","status":"succeeded","at":"2026-10-23T09:10:00Z","retry_at":null,"url":"https://dashboard.stripe.com/payments/ch_1"},
+ {"id":"ch_2","customer":"Taquería Sol","plan":null,"amount":4900,"currency":"eur","status":"failed","at":"2026-10-23T11:00:00Z","retry_at":"2026-10-24T11:00:00Z","url":null}]}}

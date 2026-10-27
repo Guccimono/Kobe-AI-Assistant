@@ -1,0 +1,156 @@
+{
+  "model": "opus",
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\" --ask",
+            "timeout": 130
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "say done"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/sam/Applications/Kobe.app/Contents/MacOS/kobe-hook\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

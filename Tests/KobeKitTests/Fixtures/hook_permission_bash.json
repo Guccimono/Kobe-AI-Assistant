@@ -1,0 +1,1 @@
+{"session_id": "s1", "cwd": "/Users/sam/Projects/kobe", "hook_event_name": "PermissionRequest", "tool_name": "Bash", "tool_input": {"command": "rm -rf build", "description": "Clean the build folder"}}

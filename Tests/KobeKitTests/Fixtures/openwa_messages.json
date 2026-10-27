@@ -1,0 +1,5 @@
+{"messages":[
+ {"waMessageId":"W2","chatId":"15550001111@c.us","from":"15550001111@c.us","body":"","type":"image","direction":"incoming","timestamp":1792590060,"metadata":{}},
+ {"waMessageId":"W1","chatId":"15550001111@c.us","from":"15550009999@c.us","body":"hello","type":"text","direction":"outgoing","timestamp":"1792590000","chatName":"Ana"},
+ {"waMessageId":"W0","chatId":"15550001111@c.us","from":"15550001111@c.us","body":"","type":"revoked","direction":"incoming","timestamp":1792589000}
+],"total":3}

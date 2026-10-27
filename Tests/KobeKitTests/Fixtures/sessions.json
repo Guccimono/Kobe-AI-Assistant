@@ -1,0 +1,4 @@
+{"object": "list", "data": [
+  {"id": "api_1792600000_ab12cd34", "source": "api_server", "model": "nvidia/nemotron-3-ultra-550b-a55b:free", "title": "Docs brief", "started_at": 1792600000.5, "last_active": 1792600100.0, "preview": "Turn the brief into tasks", "message_count": 4, "pinned": false, "archived": false, "has_system_prompt": false},
+  {"id": "20261021_124500_wa", "source": "whatsapp", "model": null, "title": null, "started_at": 1792590000.0, "last_active": 1792590500.0, "preview": "Who are you?", "message_count": 2, "pinned": false, "archived": false}
+], "limit": 50, "offset": 0, "has_more": false}

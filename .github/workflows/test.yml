@@ -1,0 +1,19 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    # Kobe needs macOS 26 (Tahoe): the runner must carry a macOS 26 SDK, and macos-latest may lag behind it.
+    # If `swift test` cannot build on the runner's SDK, the job fails: adjust it, do not skip it.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Swift version
+        run: swift --version
+      - name: Swift tests
+        run: swift test
+      - name: Agent tests
+        run: python3 -m unittest discover -s agent/tests -t agent

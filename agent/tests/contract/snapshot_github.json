@@ -1,0 +1,59 @@
+{
+ "id": "github",
+ "version": 1,
+ "updated_at": "2026-10-23T14:28:10Z",
+ "status": "ok",
+ "headline": "All green",
+ "detail": "2 open PRs",
+ "error": null,
+ "data": {
+  "needs_you": [
+   {
+    "id": "pr-12",
+    "repo": "octo-org/acme-v4",
+    "number": 12,
+    "title": "Fix menu sort",
+    "state": "failing",
+    "branch": "fix/sort",
+    "author": "luis",
+    "url": "https://github.com/octo-org/acme-v4/pull/12"
+   }
+  ],
+  "my_prs": [
+   {
+    "id": "pr-13",
+    "repo": "octo-org/kobe-notch",
+    "number": 13,
+    "title": "Snapshots",
+    "state": "running",
+    "branch": null,
+    "author": null,
+    "url": "https://github.com/octo-org/kobe-notch/pull/13"
+   }
+  ],
+  "mains": [
+   {
+    "id": "main-1",
+    "repo": "octo-org/acme-v4",
+    "number": null,
+    "title": "main",
+    "state": "passing",
+    "branch": "main",
+    "author": null,
+    "url": "https://github.com/octo-org/acme-v4"
+   }
+  ],
+  "activity": [
+   1,
+   0,
+   3,
+   5,
+   2,
+   0,
+   4
+  ],
+  "total": 15,
+  "stars": 7
+ },
+ "source": "agent"
+}

@@ -1,0 +1,7 @@
+.build/
+build/
+.swiftpm/
+.superpowers/
+.DS_Store
+build-release.log
+CLAUDE.local.md

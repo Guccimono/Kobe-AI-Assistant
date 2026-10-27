@@ -1,0 +1,3 @@
+{"id":"whatsapp","version":1,"updated_at":"2026-10-23T14:28:10Z","status":"needs_you","headline":"3 unread","detail":"2 chats","error":null,
+ "data":{"unread":3,"chats":[{"jid":"15550100256@s.whatsapp.net","name":"Ana","is_group":false,"unread":2,"last":"2026-10-23T14:20:00Z","preview":"Can you send the menu?","preview_kind":"text","mentions_me":false},
+ {"jid":"120363@g.us","name":"Acme team","is_group":true,"unread":1,"last":"2026-10-23T13:00:00Z","preview":"@Sam check this","preview_kind":"image","mentions_me":true}]}}

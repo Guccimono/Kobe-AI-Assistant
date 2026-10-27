@@ -1,0 +1,7 @@
+{"id":"google","version":1,"updated_at":"2026-10-23T14:28:10Z","status":"ok","headline":"All good","detail":"1,240 visitors · 312 clicks","error":null,
+ "data":{"period_days":7,"visitors":1240,"visitors_prev":1100,"clicks":312,"clicks_prev":280,"position":8.4,"position_prev":9.1,
+ "calls":null,"calls_prev":null,
+ "top_queries":[{"query":"menu digital qr","clicks":41},{"query":"acme","clicks":30}],
+ "daily_clicks":[40,52,38,47,61,33,41],"business_profile":"waiting_access",
+ "report_urls":{"analytics":"https://analytics.google.com/analytics/web/#/p123456789/reports/intelligenthome","search":"https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain%3Aexample.com"}},
+ "source":"agent"}

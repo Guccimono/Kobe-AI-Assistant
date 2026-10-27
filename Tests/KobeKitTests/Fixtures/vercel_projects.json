@@ -1,0 +1,5 @@
+{"projects":[
+ {"id":"p1","name":"menuly-web","updatedAt":1792600000000,"latestDeployments":[{"uid":"d1","readyState":"READY","createdAt":1792600000000,"url":"menuly-web-abc.vercel.app","meta":{"githubCommitRef":"main"}}]},
+ {"id":"p2","name":"docs-site","updatedAt":1792590000000,"latestDeployments":[{"uid":"d2","readyState":"ERROR","createdAt":1792590000000,"url":"docs-x.vercel.app","meta":{"githubCommitRef":"feat/poster"}}]},
+ {"id":"p3","name":"old-landing","updatedAt":1700000000000,"latestDeployments":[]}
+]}

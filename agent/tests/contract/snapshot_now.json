@@ -1,0 +1,44 @@
+{
+ "id": "now",
+ "version": 1,
+ "updated_at": "2026-10-23T14:28:10Z",
+ "status": "ok",
+ "headline": "Quiet",
+ "detail": "Nothing urgent",
+ "error": null,
+ "data": {
+  "current": {
+   "id": "c1",
+   "source": "agenda",
+   "title": "Call with Luis",
+   "detail": "15:00",
+   "tint": "lime",
+   "action": "open",
+   "until": "2026-10-23T15:30:00Z"
+  },
+  "needs_you": [
+   {
+    "id": "n1",
+    "source": "whatsapp",
+    "title": "Ana",
+    "detail": "Can you send the menu?",
+    "tint": null,
+    "action": "reply",
+    "until": null
+   }
+  ],
+  "clients": [
+   {
+    "id": "k1",
+    "source": "notes",
+    "title": "Acme",
+    "detail": "Invoice due",
+    "tint": null,
+    "action": null,
+    "until": null
+   }
+  ],
+  "brief": "Two calls today."
+ },
+ "source": "agent"
+}

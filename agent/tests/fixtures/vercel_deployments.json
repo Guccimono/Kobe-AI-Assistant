@@ -1,0 +1,5 @@
+{"deployments":[
+ {"uid":"d1","name":"acme-web","url":"acme-web-abc.vercel.app","state":"READY","created":1792600000000,"meta":{"githubCommitMessage":"Fix menu prices","githubCommitRef":"main"}},
+ {"uid":"d2","name":"docs-site","url":"docs-site-x.vercel.app","state":"ERROR","created":1792590000000,"meta":{"githubCommitMessage":"Poster copy","githubCommitRef":"feat/poster"}},
+ {"uid":"d3","name":"docs-site","url":"b.vercel.app","state":"BUILDING","created":1792589000000,"meta":{}}
+]}

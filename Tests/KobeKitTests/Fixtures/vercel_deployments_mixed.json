@@ -1,0 +1,7 @@
+{"deployments":[
+ {"uid":"g1","name":"menu-app","url":"menu-app-1.vercel.app","state":"CANCELED","createdAt":1792600000000,"created":1700000000000,"meta":{"gitlabCommitMessage":"Try new header","gitlabCommitRef":"header"}},
+ {"uid":"b1","name":"docs","url":"docs-2.vercel.app","state":"READY","createdAt":1792500000000,"meta":{"bitbucketCommitMessage":"Typos","bitbucketBranch":"fix/typos"}},
+ {"name":"no-uid","state":"READY","createdAt":1792400000000},
+ {"uid":"q1","name":"queued","url":"q.vercel.app","state":"QUEUED","createdAt":1792300000000},
+ {"uid":"n1","name":"bare","state":"ERROR"}
+]}

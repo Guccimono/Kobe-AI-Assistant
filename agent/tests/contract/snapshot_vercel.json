@@ -1,0 +1,32 @@
+{
+ "id": "vercel",
+ "version": 1,
+ "updated_at": "2026-10-23T14:28:10Z",
+ "status": "ok",
+ "headline": "All live",
+ "detail": "2 projects",
+ "error": null,
+ "data": {
+  "projects": [
+   {
+    "name": "acme",
+    "state": "ready",
+    "branch": "main",
+    "commit": "abc1234",
+    "at": "2026-10-23T12:00:00Z",
+    "url": "https://acme.com",
+    "is_production": true
+   },
+   {
+    "name": "landing",
+    "state": "building",
+    "branch": null,
+    "commit": null,
+    "at": "2026-10-23T14:00:00Z",
+    "url": null,
+    "is_production": false
+   }
+  ]
+ },
+ "source": "agent"
+}

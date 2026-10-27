@@ -1,0 +1,25 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "job_8c1f2a",
+      "name": "Morning brief",
+      "prompt": "Write my morning brief",
+      "schedule": "30 7 * * *",
+      "next_run_at": "2026-10-24T07:30:00+02:00",
+      "last_run_at": "2026-10-23T07:30:04+02:00",
+      "last_status": "ok",
+      "paused": false,
+      "deliver": "origin"
+    },
+    {
+      "id": "job_41d9e0",
+      "name": "Weekly invoices check",
+      "prompt": "Check unpaid invoices",
+      "schedule": {"kind": "cron", "expr": "0 9 * * 1", "display": "0 9 * * 1"},
+      "next_run_at": null,
+      "paused": true,
+      "paused_reason": "user"
+    }
+  ]
+}

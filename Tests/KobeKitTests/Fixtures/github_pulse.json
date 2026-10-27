@@ -1,0 +1,38 @@
+{"data":{
+ "viewer":{
+  "login":"samrivera",
+  "pullRequests":{"nodes":[
+   {"number":12,"title":"Add menu export","url":"https://github.com/acme/web/pull/12","isDraft":false,"reviewDecision":"APPROVED",
+    "repository":{"nameWithOwner":"acme/web","url":"https://github.com/acme/web"},
+    "commits":{"nodes":[{"commit":{"oid":"aaa111","statusCheckRollup":{"state":"FAILURE"}}}]}},
+   {"number":12,"title":"Add menu export (duplicate)","url":"https://github.com/acme/web/pull/12","isDraft":false,"reviewDecision":null,
+    "repository":{"nameWithOwner":"acme/web","url":"https://github.com/acme/web"},
+    "commits":{"nodes":[]}},
+   {"number":3,"title":"Poster page","url":"https://github.com/acme/docs/pull/3","isDraft":true,"reviewDecision":"REVIEW_REQUIRED",
+    "repository":{"nameWithOwner":"acme/docs","url":"https://github.com/acme/docs"},
+    "commits":{"nodes":[{"commit":{"oid":"bbb222","statusCheckRollup":{"state":"EXPECTED"}}}]}},
+   {"number":7,"title":"Docs","url":"https://github.com/acme/api/pull/7","isDraft":false,"reviewDecision":"CHANGES_REQUESTED",
+    "repository":{"nameWithOwner":"acme/api","url":"https://github.com/acme/api"},
+    "commits":{"nodes":[{"commit":{"oid":"ccc333","statusCheckRollup":null}}]}},
+   {"title":"Broken node without a number","url":"https://github.com/x/y/pull/1","repository":{"nameWithOwner":"x/y"}}
+  ]},
+  "repositories":{"nodes":[
+   {"nameWithOwner":"acme/web","url":"https://github.com/acme/web","isArchived":false,
+    "defaultBranchRef":{"name":"main","target":{"oid":"m1","statusCheckRollup":{"state":"SUCCESS"}}}},
+   {"nameWithOwner":"acme/old","url":"https://github.com/acme/old","isArchived":true,
+    "defaultBranchRef":{"name":"main","target":{"oid":"o1","statusCheckRollup":{"state":"FAILURE"}}}},
+   {"nameWithOwner":"acme/api","url":"https://github.com/acme/api","isArchived":false,
+    "defaultBranchRef":{"name":"trunk","target":{"oid":"k1","statusCheckRollup":{"state":"ERROR"}}}},
+   {"nameWithOwner":"acme/empty","url":"https://github.com/acme/empty","isArchived":false,"defaultBranchRef":null},
+   {"nameWithOwner":"octo-org/site","url":"https://github.com/octo-org/site","isArchived":false,
+    "defaultBranchRef":{"name":"main","target":{"oid":"s1"}}}
+  ]}
+ },
+ "reviewRequested":{"issueCount":2,"nodes":[
+  {"number":9,"title":"Bump deps","url":"https://github.com/x/y/pull/9","isDraft":false,"author":{"login":"bot"},
+   "repository":{"nameWithOwner":"x/y","url":"https://github.com/x/y"}},
+  {"number":9,"title":"Bump deps","url":"https://github.com/x/y/pull/9","isDraft":false,"author":{"login":"bot"},
+   "repository":{"nameWithOwner":"x/y","url":"https://github.com/x/y"}},
+  {}
+ ]}
+}}

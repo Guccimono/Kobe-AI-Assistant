@@ -1,0 +1,6 @@
+[project]
+name = "kobe-tts-kokoro"
+version = "0.1.0"
+description = "Optional local neural voice for Kobe: Kokoro-82M through kokoro-onnx, driven over stdio by the app."
+requires-python = ">=3.10,<3.14"
+dependencies = ["kokoro-onnx>=0.6.1", "soundfile>=0.12"]

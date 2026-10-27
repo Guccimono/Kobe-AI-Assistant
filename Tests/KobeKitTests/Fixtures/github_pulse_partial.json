@@ -1,0 +1,2 @@
+{"data":{"viewer":{"login":"samrivera","pullRequests":{"nodes":[]},"repositories":{"nodes":[]}},"reviewRequested":null},
+ "errors":[{"message":"Resource not accessible by integration","path":["reviewRequested"]}]}

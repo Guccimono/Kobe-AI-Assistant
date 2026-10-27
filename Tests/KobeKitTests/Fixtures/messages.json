@@ -1,0 +1,5 @@
+{"object": "list", "session_id": "api_1", "data": [
+  {"id": 12, "session_id": "api_1", "role": "assistant", "content": "Hello Sam", "timestamp": 1792600010.0},
+  {"id": 11, "session_id": "api_1", "role": "user", "content": [{"type": "text", "text": "Say hi"}], "timestamp": 1792600000.0},
+  {"id": 10, "session_id": "api_1", "role": "user", "content": "", "timestamp": 1792599990.0, "display_kind": "hidden"}
+], "pagination": {"limit": 200, "offset": 0, "order": "latest", "returned": 3}}

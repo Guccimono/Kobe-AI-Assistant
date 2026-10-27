@@ -1,0 +1,264 @@
+<title>Kobe Home Writing Mode</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: one notch island centred on a black floor, scaled to fit; a mode switch above, three plain notes below. */
+:root {
+  color-scheme: dark;
+  --floor: #0B0B0C;      /* Theme.window */
+  --island: #000000;
+  --panel: #141417;      /* Theme.panel */
+  --panel2: #1C1C20;
+  --glass: rgba(255,255,255,.06);
+  --glass-on: rgba(255,255,255,.10);
+  --line: #25252B;       /* Theme.hairline */
+  --text1: #F5F6F8; --text2: #A1A1AA; --text3: #71717A;
+  --lime: #C7F41E; --amber: #F5A524;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--floor); color: var(--text1); font-family: var(--sans); margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 40px; }
+.wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 14px; }
+h1 { font-size: 20px; font-weight: 700; margin: 0; text-wrap: balance; }
+header p { margin: 4px 0 0; color: var(--text2); font-size: 13px; max-width: 52ch; }
+.seg { display: inline-flex; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 3px; gap: 2px; }
+.seg button { font: 600 12px var(--sans); color: var(--text2); background: none; border: 0; border-radius: 9px; padding: 7px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--glass-on); color: var(--text1); }
+.seg button:focus-visible, .rail:focus-visible, .composer textarea:focus-visible { outline: 1.5px solid var(--lime); outline-offset: 2px; }
+.opts { display: flex; gap: 16px; flex-wrap: wrap; color: var(--text2); font-size: 12px; }
+.opts label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+
+/* The island at its real size (760 × 400 pt), scaled down on narrow screens. */
+.stage { width: 100%; overflow: hidden; }
+.island { width: 760px; height: 400px; background: var(--island); border-radius: 0 0 22px 22px; padding: 10px 16px 16px;
+  display: flex; flex-direction: column; gap: 10px; transform-origin: top left; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.bar { display: flex; align-items: center; justify-content: space-between; height: 40px; }
+.strip { display: flex; }
+.strip span { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--island); margin-left: -7px; position: relative; }
+.strip span:first-child { margin-left: 0; width: 38px; height: 38px; background: var(--lime); }
+.strip .dot::after { content: ""; position: absolute; top: -3px; right: -2px; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); border: 2px solid var(--island); }
+.tools { display: flex; gap: 6px; }
+.tools span { width: 32px; height: 32px; border-radius: 50%; background: var(--glass); display: grid; place-items: center; }
+.tools svg, .ico { width: 15px; height: 15px; stroke: var(--text2); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.body { flex: 1; display: flex; gap: 12px; min-height: 0; --fold: .5s cubic-bezier(.34,1.12,.5,1); }
+/* Each column animates its width with the island's open spring (Motion.openResponse 0.5, slight overshoot). The
+   content inside keeps its full width and fades, so text never reflows mid-motion; the rail face fades in on top. */
+.col { position: relative; min-width: 0; background: var(--panel); border-radius: 24px; overflow: hidden;
+  flex: 0 0 var(--w); transition: flex-basis var(--fold); }
+.col > .full { position: absolute; inset: 0 auto 0 0; width: var(--full); padding: 14px; display: flex; flex-direction: column;
+  transition: opacity .22s ease, transform var(--fold); }
+#nowCol > .full { left: auto; right: 0; }
+.col.folded > .full { opacity: 0; pointer-events: none; }
+#chatCol.folded > .full { transform: translateX(-24px); }
+#nowCol.folded > .full { transform: translateX(24px); }
+.col > .rail { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.col.folded > .rail { opacity: 1; pointer-events: auto; transition-delay: .16s; }
+.rail { background: var(--panel); border-radius: 24px; border: 0; cursor: pointer; color: var(--text2);
+  display: flex; flex-direction: column; align-items: center; padding: 14px 0 18px; gap: 10px; font: 600 11px var(--sans); }
+.rail .exp { width: 28px; height: 28px; border-radius: 50%; background: var(--glass); display: grid; place-items: center; }
+.rail:hover .exp { background: var(--glass-on); }
+.rail:hover .exp svg { stroke: var(--lime); }
+.chat { } .now { }
+.mini { width: 26px; height: 26px; border-radius: 50%; background: var(--glass); border: 0; display: grid; place-items: center; cursor: pointer; }
+.mini:hover { background: var(--glass-on); } .mini:hover svg { stroke: var(--lime); }
+.rail .v { writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .4px; }
+.rail .count { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--amber); color: #000; font-size: 10.5px; display: grid; place-items: center; }
+.rail:hover { background: var(--panel2); }
+.ldot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); flex: none; }
+[hidden] { display: none !important; }
+
+.chead { display: flex; align-items: center; gap: 8px; }
+.chead b { font-size: 17px; } .chead .st { color: var(--text3); font-size: 13px; }
+.chead .sp { flex: 1; }
+.chead .btn { width: 32px; height: 32px; border-radius: 50%; background: var(--glass); display: grid; place-items: center; }
+.tabs { display: flex; gap: 8px; margin-top: 10px; font-size: 12.5px; color: var(--text2); }
+.tabs span { padding: 6px 10px; border-radius: 10px; } .tabs span:first-child { background: var(--glass); color: var(--text1); }
+.thread { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 12px 2px; min-height: 0; }
+.empty { margin: auto; color: var(--text3); font-size: 13px; }
+.msg { max-width: 78%; padding: 8px 12px; border-radius: 16px; font-size: 13px; line-height: 1.45; }
+.msg.me { align-self: flex-end; background: var(--glass-on); }
+.msg.kobe { align-self: flex-start; background: var(--panel2); color: var(--text2); }
+.composer { display: flex; align-items: flex-end; gap: 8px; background: var(--glass); border-radius: 12px; padding: 4px 4px 4px 12px; }
+.composer textarea { flex: 1; resize: none; background: none; border: 0; color: var(--text1); font: 13px/1.45 var(--sans); padding: 7px 0; max-height: calc(1.45em * 10 + 14px); outline: none; transition: height .18s ease; }
+.composer textarea::placeholder { color: var(--text3); }
+.composer .hint { color: var(--text3); font: 500 11px var(--sans); padding-bottom: 9px; white-space: nowrap; }
+.send { width: 28px; height: 28px; border-radius: 50%; background: var(--glass); border: 0; display: grid; place-items: center; cursor: pointer; margin-bottom: 1px; }
+.send.on svg { stroke: var(--lime); }
+
+.nhead { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text3); }
+.nhead .eb { font: 600 10.5px var(--sans); letter-spacing: .6px; }
+.nhead .sp { flex: 1; } .nhead .work { background: var(--glass-on); color: var(--text1); font-weight: 600; font-size: 12px; padding: 5px 10px; border-radius: 8px; }
+.group { margin: 12px 2px 4px; font: 600 10.5px var(--sans); letter-spacing: .6px; color: var(--text3); text-transform: uppercase; }
+.row { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 8px; background: var(--glass); margin-bottom: 4px; }
+.row i { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); flex: none; }
+.row b { font-size: 13px; font-weight: 600; } .row small { color: var(--text3); font-size: 12px; margin-left: auto; white-space: nowrap; }
+.calm { color: var(--text2); font-size: 13px; margin: 10px 2px; }
+.ex { color: var(--text3); font-size: 11px; margin: 10px 2px 0; }
+
+.notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.notes div { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.notes h2 { font-size: 13px; margin: 0 0 6px; } .notes p { margin: 0; color: var(--text2); font-size: 12.5px; line-height: 1.5; }
+@media (max-width: 720px) { .notes { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .col, .col > .full, .col > .rail { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Home, writing first</h1>
+      <p>Click the field and start typing: Now folds to a rail and the chat takes the room. The expand icon on the rail, or ⌘\, brings Now back.</p>
+    </div>
+    <div class="seg" role="group" aria-label="Layout">
+      <button id="m-split" data-mode="split">Today</button>
+      <button id="m-write" data-mode="write">Writing</button>
+      <button id="m-now" data-mode="now">Now first</button>
+    </div>
+  </header>
+
+  <div class="opts">
+    <label><input type="checkbox" id="o-needs" checked> Something needs you</label>
+    <label><input type="checkbox" id="o-auto" checked> Fold Now when I start typing</label>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="island" id="island">
+      <div class="bar">
+        <div class="strip" aria-hidden="true">
+          <span></span><span style="background:#34D399"></span><span style="background:#F4505E"></span><span style="background:#F5A524"></span>
+          <span class="dot" id="gdot" style="background:#4C8DF6"></span><span style="background:#635BFF"></span><span style="background:#E5E7EB"></span><span style="background:#F5F6F8"></span><span style="background:#F7C948"></span>
+        </div>
+        <div class="tools" aria-hidden="true">
+          <span><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3"/></svg></span>
+          <span><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.4"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M3.4 12.6l1.4-1.4M11.2 4.8l1.4-1.4"/></svg></span>
+          <span><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2zM11 6l4 4M15 6l-4 4"/></svg></span>
+          <span><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></span>
+        </div>
+      </div>
+
+      <div class="body" id="body">
+        <section class="col" id="chatCol" aria-label="Chat with Kobe">
+          <div class="full chat">
+            <div class="chead">
+              <span class="ldot"></span><b>Kobe</b><span class="st">Ready</span><span class="sp"></span>
+              <button class="mini" id="chatExpand" title="Give the chat all the room (⌘\)"><svg class="ico" viewBox="0 0 16 16"><path d="M10 2.5h3.5V6M6 13.5H2.5V10M13.5 2.5 9.5 6.5M2.5 13.5l4-4"/></svg></button>
+              <span class="btn"><svg class="ico" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span>
+            </div>
+            <div class="tabs"><span>All chats</span><span>New chat</span></div>
+            <div class="thread" id="thread"><div class="empty" id="empty">New chat with Kobe</div></div>
+            <div class="composer">
+              <textarea id="field" rows="1" placeholder="Ask Kobe… or drop a file here" aria-label="Message to Kobe"></textarea>
+              <span class="hint">⌃⌥Space</span>
+              <button class="send" id="send" aria-label="Send"><svg class="ico" viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg></button>
+            </div>
+          </div>
+          <button class="rail" id="chatRail" aria-label="Show the chat" title="Show the chat (⌘\)">
+            <span class="exp"><svg class="ico" viewBox="0 0 16 16"><path d="M10 2.5h3.5V6M6 13.5H2.5V10M13.5 2.5 9.5 6.5M2.5 13.5l4-4"/></svg></span><span class="ldot"></span><span class="v">Chat with Kobe</span>
+          </button>
+        </section>
+
+        <section class="col" id="nowCol" aria-label="Now">
+          <div class="full now">
+            <div class="nhead"><span class="eb">NOW</span><span>by Kobe · just now</span><span class="sp"></span>
+              <button class="mini" id="nowExpand" title="Give Now all the room"><svg class="ico" viewBox="0 0 16 16"><path d="M10 2.5h3.5V6M6 13.5H2.5V10M13.5 2.5 9.5 6.5M2.5 13.5l4-4"/></svg></button><span class="work">Work</span></div>
+            <div id="nowRows"></div>
+          </div>
+          <button class="rail" id="nowRail" aria-label="Show Now" title="Show Now (⌘\ or Esc)">
+            <span class="exp"><svg class="ico" viewBox="0 0 16 16"><path d="M10 2.5h3.5V6M6 13.5H2.5V10M13.5 2.5 9.5 6.5M2.5 13.5l4-4"/></svg></span><span class="count" id="railCount">2</span><span class="v">Now</span>
+          </button>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div><h2>Writing folds Now</h2><p>The moment you type, Now shrinks to a 44 pt rail and the chat gets the full width. The field grows to ten lines instead of five. Sending keeps you in writing mode.</p></div>
+    <div><h2>The rail keeps the count</h2><p>Folded Now still shows how many things need you, in amber. The expand icon at its top, a click anywhere on the rail, ⌘\ or Esc brings the split back.</p></div>
+    <div><h2>Home opens on what matters</h2><p>When something needs you, Home opens split as today. When Now is empty, it opens writing first. "Now first" is the mirror, for reading the day.</p></div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+let mode = "split";
+const rows = [
+  { t: "Google", d: "Clicks down 40 % on last week", w: "1 h" },
+  { t: "WhatsApp", d: "Example client · 2 new", w: "4 min" }
+];
+
+function renderNow() {
+  const needs = $("o-needs").checked;
+  $("gdot").classList.toggle("dot", needs);
+  $("railCount").hidden = !needs;
+  $("railCount").textContent = rows.length;
+  $("nowRows").innerHTML = needs
+    ? '<div class="group">Needs you</div>' + rows.map(r =>
+        `<div class="row"><i></i><b>${r.t}</b><span style="color:var(--text2);font-size:12.5px">${r.d}</span><small>${r.w}</small></div>`).join("")
+      + '<p class="ex">Example rows</p>'
+    : '<p class="calm">Nothing needs you.</p>';
+}
+
+// Column widths per mode; the island's content area is 728 pt wide (760 minus its padding), the gap 12.
+const AREA = 728, GAP = 12, RAIL = 44;
+const SPLIT_CHAT = Math.round((AREA - GAP) * 1.1 / 2.1);
+const WIDTHS = {
+  split: [SPLIT_CHAT, AREA - GAP - SPLIT_CHAT],
+  write: [AREA - GAP - RAIL, RAIL],
+  now:   [RAIL, AREA - GAP - RAIL],
+};
+function setMode(m) {
+  mode = m;
+  const [c, n] = WIDTHS[m];
+  $("chatCol").style.setProperty("--w", c + "px");
+  $("nowCol").style.setProperty("--w", n + "px");
+  // The content keeps the width it has when open, so it slides and fades instead of squeezing.
+  $("chatCol").style.setProperty("--full", (m === "split" ? SPLIT_CHAT : AREA - GAP - RAIL) + "px");
+  $("nowCol").style.setProperty("--full", (m === "split" ? AREA - GAP - SPLIT_CHAT : AREA - GAP - RAIL) + "px");
+  $("chatCol").classList.toggle("folded", m === "now");
+  $("nowCol").classList.toggle("folded", m === "write");
+  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === m));
+}
+
+function fit() {
+  const w = $("stage").clientWidth, s = Math.min(1, w / 760);
+  $("island").style.transform = `scale(${s})`;
+  $("stage").style.height = (400 * s) + "px";
+}
+
+function grow() {
+  const f = $("field");
+  f.style.height = "auto";
+  f.style.height = f.scrollHeight + "px";
+  $("send").classList.toggle("on", f.value.trim().length > 0);
+}
+
+function send() {
+  const f = $("field"), text = f.value.trim();
+  if (!text) return;
+  $("empty")?.remove();
+  const me = document.createElement("div"); me.className = "msg me"; me.textContent = text;
+  const kobe = document.createElement("div"); kobe.className = "msg kobe"; kobe.textContent = "Sample reply from Kobe.";
+  $("thread").append(me, kobe);
+  $("thread").scrollTop = $("thread").scrollHeight;
+  f.value = ""; grow();
+}
+
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+$("chatRail").addEventListener("click", () => setMode("split"));
+$("nowRail").addEventListener("click", () => setMode("split"));
+$("chatExpand").addEventListener("click", () => setMode("write"));
+$("nowExpand").addEventListener("click", () => setMode("now"));
+$("field").addEventListener("input", () => { grow(); if ($("o-auto").checked && mode === "split" && $("field").value) setMode("write"); });
+$("field").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.altKey && !e.shiftKey) { e.preventDefault(); send(); }
+  if (e.key === "Escape") setMode("split");
+});
+$("send").addEventListener("click", send);
+document.addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "\\") setMode(mode === "write" ? "split" : "write"); });
+$("o-needs").addEventListener("change", renderNow);
+window.addEventListener("resize", fit);
+
+renderNow(); setMode("split"); fit();
+</script>
